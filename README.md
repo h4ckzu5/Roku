@@ -133,9 +133,7 @@ Existen numerosos comandos que se pueden emitir a través de solicitudes HTTP, p
 
 
   Home
-  
   Rev
-  
   Fwd
   Play
   Select
