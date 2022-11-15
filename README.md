@@ -45,85 +45,85 @@ roku, inc 84:ea:ed
 Más enumeración
 
 
-¡Podemos identificar la ubicación del dispositivo, el nombre y varios otros campos pertinentes, como admitir capacidades remotas! Otra forma de enumerar los dispositivos Roku es enviar una solicitud a la dirección de multidifusión del puerto de descubrimiento de servicio simple (SSDP) y al puerto 1900. Podemos hacer esto usando Netcat:
-
-
-$ nc -u 239.255.255.250 1900 < Roku_ECP_Enum.txt
-El dispositivo responderá con esta información que también se puede observar en Wireshark:
-
-
-HTTP/1.1 200 Aceptar
-Control de caché: edad máxima = 3600
-ST: roku:ecp
-Ubicación: http://192.168.X.X:8060/
-USN: uuid:roku:ecp:P0A070000007
-Utilizando Nmap y Wireshark, podemos identificar fácilmente la dirección IP de cualquier dispositivo Roku conectado a la red y, si admiten el uso de ECP, ¡podemos ver de forma remota el archivo XML en el servidor web del dispositivo!
-
-
 http://192.168.X.X:8060/query/device-info
+
+curl http://192.168.X.X:8060/query/device-info
+
+
 Esto producirá una página XML similar a la siguiente:
+<?xml version="1.0" encoding="UTF-8" ?>
+<device-info>
+	<udn>280001c0-0000-1000-8000-7c27bc684909</udn>
+	<serial-number>X00700C2SMY5</serial-number>
+	<device-id>S07E7162SMY5</device-id>
+	<advertising-id>0f3c6baa-6016-5fd7-a324-43d55e01965e</advertising-id>
+	<vendor-name>Hisense</vendor-name>
+	<model-name>4Series-43</model-name>
+	<model-number>D206X</model-number>
+	<model-region>MX</model-region>
+	<is-tv>true</is-tv>
+	<is-stick>false</is-stick>
+	<screen-size>43</screen-size>
+	<panel-id>2</panel-id>
+	<mobile-has-live-tv>true</mobile-has-live-tv>
+	<ui-resolution>720p</ui-resolution>
+	<tuner-type>ATSC</tuner-type>
+	<supports-ethernet>false</supports-ethernet>
+	<wifi-mac>7c:27:bc:68:49:09</wifi-mac>
+	<wifi-driver>realtek</wifi-driver>
+	<has-wifi-extender>false</has-wifi-extender>
+	<has-wifi-5G-support>true</has-wifi-5G-support>
+	<can-use-wifi-extender>true</can-use-wifi-extender>
+	<network-type>wifi</network-type>
+	<network-name>INFINITUM6669</network-name>
+	<friendly-device-name>43&quot; Hisense Roku TV</friendly-device-name>
+	<friendly-model-name>Hisense•Roku TV</friendly-model-name>
+	<default-device-name>Hisense•Roku TV - X00700C2SMY5</default-device-name>
+	<user-device-name>43&quot; Hisense Roku TV</user-device-name>
+	<user-device-location>Cuarto de estar</user-device-location>
+	<build-number>CPC.50E04235A</build-number>
+	<software-version>11.5.0</software-version>
+	<software-build>4235</software-build>
+	<secure-device>true</secure-device>
+	<language>es</language>
+	<country>MX</country>
+	<locale>es_MX</locale>
+	<time-zone-auto>false</time-zone-auto>
+	<time-zone>Mexico/Central</time-zone>
+	<time-zone-name>México/Central</time-zone-name>
+	<time-zone-tz>America/Bahia_Banderas</time-zone-tz>
+	<time-zone-offset>-360</time-zone-offset>
+	<clock-format>12-hour</clock-format>
+	<uptime>786630</uptime>
+	<power-mode>PowerOn</power-mode>
+	<supports-suspend>true</supports-suspend>
+	<supports-find-remote>false</supports-find-remote>
+	<supports-audio-guide>false</supports-audio-guide>
+	<supports-rva>true</supports-rva>
+	<has-hands-free-voice-remote>false</has-hands-free-voice-remote>
+	<developer-enabled>true</developer-enabled>
+	<keyed-developer-id/>
+	<search-enabled>true</search-enabled>
+	<search-channels-enabled>true</search-channels-enabled>
+	<voice-search-enabled>true</voice-search-enabled>
+	<notifications-enabled>false</notifications-enabled>
+	<notifications-first-use>true</notifications-first-use>
+	<supports-private-listening>true</supports-private-listening>
+	<supports-private-listening-dtv>true</supports-private-listening-dtv>
+	<supports-warm-standby>true</supports-warm-standby>
+	<headphones-connected>false</headphones-connected>
+	<supports-audio-settings>false</supports-audio-settings>
+	<supports-ecs-textedit>true</supports-ecs-textedit>
+	<supports-ecs-microphone>true</supports-ecs-microphone>
+	<supports-wake-on-wlan>true</supports-wake-on-wlan>
+	<supports-airplay>true</supports-airplay>
+	<has-play-on-roku>true</has-play-on-roku>
+	<has-mobile-screensaver>false</has-mobile-screensaver>
+	<support-url>http://www.hisense.com.mx/support/</support-url>
+	<grandcentral-version>8.2.38</grandcentral-version>
+	<av-sync-calibration-enabled>3.0</av-sync-calibration-enabled>
+</device-info>
 
-
-<información del dispositivo>
-<número de serie>X004000B231</número de serie>
-<id-dispositivo>S00820BB231</id-dispositivo>
-<nombre-proveedor>Roku</nombre-proveedor>
-<nombre-del-modelo>Roku Ninja</nombre-del-modelo>
-<número de modelo>3930X</número de modelo>
-<modelo-región>EE. UU.</modelo-región>
-<is-tv>falso</is-tv>
-<is-stick>falso</is-stick>
-<resolución ui>1080p</resolución ui>
-<soporta-ethernet>falso</soporta-ethernet>
-<wifi-mac>10:59:32</wifi-mac>
-<wifi-controlador>realtek</wifi-controlador>
-<has-wifi-extender>falso</has-wifi-extender>
-<has-wifi-5G-support>verdadero</has-wifi-5G-support>
-<puede-usar-wifi-extender>verdadero</puede-usar-wifi-extender>
-<tipo-de-red>wifi</tipo-de-red>
-<network-name>Servidor de correo electrónico de Hillary</network-name>
-<nombre-de-dispositivo-amigable>Roku LivingRoom</nombre-de-dispositivo-amigable>
-<nombre-del-modelo-amigable>Roku Express</nombre-del-modelo-amigable>
-<nombre-dispositivo-predeterminado>Roku Express - X004000AJDX1</nombre-dispositivo-predeterminado>
-<nombre-de-dispositivo-de-usuario>Roku Master</nombre-de-dispositivo-de-usuario>
-<usuario-dispositivo-ubicación>LivingRoom</usuario-dispositivo-ubicación>
-<número de compilación>AEA.00E04209A</número de compilación>
-<versión-software>10.0.0</versión-software>
-<software-build>4209</software-build>
-<dispositivo-seguro>verdadero</dispositivo-seguro>
-<idioma>es</idioma>
-<país>EE. UU.</país>
-<locale>en_US</locale>
-<time-zone-auto>verdadero</time-zone-auto>
-<time-zone>EE.UU./Este</time-zone>
-<time-zone-name>Estados Unidos/Este</time-zone-name>
-<time-zone-tz>América/Nueva_York</time-zone-tz>
-<desplazamiento de la zona horaria>-240</desplazamiento de la zona horaria>
-<formato-reloj>12 horas</formato-reloj>
-<tiempo de actividad>2912968</tiempo de actividad>
-<power-mode>Encender</power-mode>
-<supports-suspend>falso</supports-suspend>
-<supports-find-remote>verdadero</supports-find-remote>
-<encontrar-remoto-es-posible>falso</encontrar-remoto-es-posible>
-<supports-audio-guide>verdadero</supports-audio-guide>
-<soporta-rva>verdadero</soporta-rva>
-<habilitado para desarrolladores>falso</habilitado para desarrolladores>
-<id-de-desarrollador-con-clave/>
-<habilitado para búsqueda>verdadero</habilitado para búsqueda>
-<search-channels-enabled>true</search-channels-enabled>
-<voice-search-enabled>true</voice-search-enabled>
-<notificaciones-habilitadas>verdadero</notificaciones-habilitadas>
-<notificaciones-primer-uso>verdadero</notificaciones-primer-uso>
-<supports-private-listening>true</supports-private-listening>
-<auriculares-conectados>falso</auriculares-conectados>
-<supports-ecs-textedit>verdadero</supports-ecs-textedit>
-<supports-ecs-microphone>verdadero</supports-ecs-microphone>
-<supports-wake-on-wlan>falso</supports-wake-on-wlan>
-<supports-airplay>verdadero</supports-airplay>
-<has-play-on-roku>verdadero</has-play-on-roku>
-<has-mobile-screensaver>falso</has-mobile-screensaver>
-<soporte-url>roku.com/soporte</soporte-url>
-<grandcentral-version>5.5.62</grandcentral-version>
 
 
 Emisión de comandos
@@ -133,7 +133,9 @@ Existen numerosos comandos que se pueden emitir a través de solicitudes HTTP, p
 
 
   Home
+  
   Rev
+  
   Fwd
   Play
   Select
